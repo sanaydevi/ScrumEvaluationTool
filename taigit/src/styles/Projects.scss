@@ -20,6 +20,47 @@
   text-decoration: none;
 }
 
+.about {
+  color: #08708A;
+  text-align: center;
+  position: relative;
+  top: 6px;
+  left: 5px;
+}
+
+.about:hover {
+  color: #56B1BF;
+}
+
+div.tip {
+  text-decoration: none;
+  display: inline;
+  margin: 10px;
+}
+div.tip:hover {
+  cursor: help;
+  position: relative;
+  text-decoration: none;
+}
+div.tip span {
+  display: none
+}
+div.tip:hover span {
+  border: white 1px dotted;
+  background-color: lightgray;
+  text-color: black;
+  font-size: 12px;
+  padding: 5px 20px 5px 5px;
+  display: block;
+  z-index: 100;
+  left: 20px;
+  margin: 10px;
+  width: 300px;
+  position: absolute;
+  top: 15px;
+  text-decoration: none
+}
+
 .btn {
   background-color: #08708A;
   color: white;
@@ -35,13 +76,40 @@
 .gh-btn {
   background-color: #08708A;
   color: white;
-  padding: 14px 25px;
+  padding: 1.2em 2.2em;
   text-align: center;
   position: relative;
-  left: 40%;
+  left: 8px;
 }
 
 .gh-btn:hover {
   background-color: #56B1BF;
   cursor: pointer;
+}
+
+.small-icon {
+  margin-right: 0.25em;
+}
+
+.project-button {
+  background-color: #08708A;
+  color: white;
+  padding: 1.2em 2.2em;
+  text-align: center;
+}
+
+.project-selector-container {
+  display: inline-block;
+}
+
+.project-selector-title {
+  display: inline-block;
+  margin: 0px auto;
+  margin-right: 0.5em;
+  color: grey;
+}
+
+.project-selector {
+  display: inline-block;
+  margin-right: 1em;
 }

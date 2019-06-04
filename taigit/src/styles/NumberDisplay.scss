@@ -12,8 +12,14 @@
 
 .number-display-number {
   font-size: 5em;
-  font-weight: bold; 
+  font-weight: bold;
   color: $purple-dark;
+}
+
+.not-available {
+  font-size: 5em;
+  font-weight: bold;
+  color: grey;
 }
 
 .number-display-title {

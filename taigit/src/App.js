@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './styles/App.scss';
 import Team from './components/Team';
 import GitHub from './components/GitHub';
@@ -17,12 +17,12 @@ class App extends Component {
         <div>
           <NavBar/>
           <Switch>
-            <Route path="/" component={Overview} exact/>
-            <Route path="/github" component={GitHub}/>
-            <Route path="/taiga" component={Taiga}/>
+            <Route path="/overview" component={Overview} exact/>
+            <Route path="/github" component={GitHub} exact/>
+            <Route path="/taiga" component={Taiga} exact/>
             <Route path="/team" component={Team} exact/>
             <Route path="/team/members/:memberId" component={MemberProfile} exact/>
-            <Route path="/projects" component={Projects}/>
+            <Route path="/" component={Projects} exact/>
             <Route path="/callback" component={Callback} exact/>
             <Route path="/callback?=code:tempCode" component={Callback} exact/>
           </Switch>

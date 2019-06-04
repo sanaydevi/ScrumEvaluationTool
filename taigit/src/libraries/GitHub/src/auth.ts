@@ -6,38 +6,30 @@ import axios from "axios"
  * @return           a url to the authorization system
  */
 export function
-authRedirect(client_id : string) : string {
+getAuthRedirect(client_id : string) : string {
     if(client_id == null){
         throw new Error("keys.json file is missing proper values! " +
         "Please check with the development team to ensure the GitHub " +
         "keys are set.");
     }
     return "https://github.com/login/oauth/" +
-    "authorize?scope=user:email&client_id=" + client_id;
+    "authorize?scope=user:email%20read:org&client_id=" + client_id;
 }
 
 /**
- * Takes in a client_id, client_secret, and session_code from GitHub and
+ * Takes in a auth server from gatekeeper and a session_code from GitHub and
  * returns the authorization token
- * @param client_id     the CLIENT_ID of the GitHub Application
- * @param client_secret the CLIENT_SECRET of the GitHub Application
+ *
+ * @param auth_server   a get endpoint for authentication
  * @param session_code  a value returned from GitHub after initial authorization
  * @return              an auth token for a user
  */
 export async function
-getAuthToken(client_id : string, client_secret : string, session_code : string) : Promise<string> {
-    if(client_id == null || client_secret == null) {
-        throw new Error("keys.json file is missing proper values! " +
-        "Please check with the development team to ensure the GitHub " +
-        "keys are set.");
+getAuthToken(auth_server: string, session_code : string) : Promise<string> {
+    let url : string = auth_server + session_code;
+    let oauth = await axios.get(url);
+    if("error" in oauth.data) {
+        throw new Error("Recieved bad code from authentication server using the following URL: " + url);
     }
-    let oauth = await axios.post("https://github.com/login/oauth/access_token",
-    {
-        "client_id" : client_id,
-        "client_secret" : client_secret,
-        "code" : session_code
-    },{
-        headers: {'accept': 'application/json'}
-    });
-    return oauth.data.access_token;
+    return oauth.data.token;
 }
